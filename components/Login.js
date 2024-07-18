@@ -1,5 +1,5 @@
 import styles from '../styles/Home.module.css';
-import logo from 'twitterLogo.png'
+/* import logo from 'twitterLogo.png' */
 
 function Login() {
 
