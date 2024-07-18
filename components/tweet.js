@@ -1,7 +1,8 @@
 import styles from '../styles/Tweet.module.css';
+import Image from 'next/image';
 import {faHeart} from '@fortawesome/free-solid-svg-icons'
 
-function Tweet() {
+function Tweet(props) {
 
     return (
         <div className={styles.main}>
@@ -12,13 +13,12 @@ function Tweet() {
                     height={50}
                     style={{ borderRadius: '50%' }}
                 />
-                <h3>{user.firstname}</h3>
-                <p>{user.nickname}</p>
+                <h3>{props.firstname}</h3>
+                <p>{props.nickname}</p>
             </div>
-            <div className={styles.tweet}>
-                <p>{user.nickname}</p>
+            <div className={styles.message}>
+                <p>{props.message}</p>
             </div>
-            <FontAwesomeIcon icon={faHeart} />
 
         </div>
     );

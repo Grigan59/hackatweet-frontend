@@ -2,6 +2,7 @@ import styles from '../styles/Home.module.css';
 import Image from 'next/image';
 import Login from './Login'
 import Lasttweets from './Lasttweets'
+import Trends from './Trends'
 import { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 
@@ -84,6 +85,7 @@ function Home() {
       </div>
       <div className={styles.rightfield}>
         <h2 className={styles.title}>Trends</h2>
+        <Trends />
       </div>
     </div>
   );
