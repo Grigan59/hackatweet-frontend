@@ -42,11 +42,37 @@ function Home() {
       })
     }).then(response => response.json())
       .then(data => {
-        /* console.log(data); */
+        loadTweets();
+        loadTrends();
+        setNewTweet('');
+      });
+  }
+
+  const [dataTrends, setDataTrends] = useState([]);
+  const loadTrends = () => {
+    fetch(`${urlBackEnd}/trends`)
+      .then(response => response.json())
+      .then(data => {
+        if (data) {
+          setDataTrends(data.trends);
+        }
+      });
+  }
+
+  const [dataTweets, setDataTweets] = useState([]);
+  const loadTweets = () => {
+    fetch(`${urlBackEnd}/tweets`)
+      .then(response => response.json())
+      .then(data => {
+        if (data.result){
+          setDataTweets(data.tweets);
+        }
       });
   }
 
   useEffect(() => {
+    loadTrends();
+    loadTweets();
     fetch(`${urlBackEnd}/users/${user.token}`)
       .then(response => response.json())
       .then(data => {
@@ -106,11 +132,11 @@ function Home() {
           <p>{newTweet.length} /280</p>
           <button onClick={() => addTweet(user.token, newTweet)}>Tweet</button>
         </div>
-        <Lasttweets />
+        <Lasttweets dataTweets={dataTweets} />
       </div>
       <div className={styles.rightfield}>
         <h2 className={styles.title}>Trends</h2>
-        <Trends />
+        <Trends dataTrends={dataTrends} />
       </div>
     </div>
   );

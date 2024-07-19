@@ -49,11 +49,10 @@ function Login() {
                 dispatch(logInUser(data.token));
                 setSignInUsername('');
                 setSignInPassword('');
-                console.log(data)
                 router.push('/tweets')
             }
         })
-    }
+    } 
 
     return (
         <div className={styles.main}>
@@ -61,49 +60,52 @@ function Login() {
                 <img src='/twitter-icon-white-transparent.png' className={styles.backgroundIcon} alt='Twitter Icon' />
             </div>
             <div className={styles.loginContainer}>
-                <h1 className={styles.title}>See what's happening</h1>
-                <h2 className={styles.underTitle}>Join hacketweet today.</h2>
-                <input
-                    type="text"
-                    placeholder="First Name"
-                    id="firstname"
-                    onChange={(e) => setSignupFirstname(e.target.value)}
-                    value={signupFirstname}
-                />
-                <input
-                    type="text"
-                    placeholder="Username"
-                    id="username"
-                    onChange={(e) => setSignUpUsername(e.target.value)}
-                    value={signUpUsername}
-                />
-                <input
-                    type="password"
-                    placeholder="Password"
-                    id="password"
-                    onChange={(e) => setSignupPassword(e.target.value)}
-                    value={signUpPassword}
-                />
-                <button id="signup" onClick={handleSignup}>Sign up</button>
-                <p className={styles.signinInvit}>Already have an account?</p>
+                <div className={styles.signUpContainer}>
+                    <h1 className={styles.title}>See what's happening</h1>
+                    <h2 className={styles.underTitle}>Join hacketweet today.</h2>
+                    <input
+                        type="text"
+                        placeholder="First Name"
+                        id="firstname"
+                        onChange={(e) => setSignupFirstname(e.target.value)}
+                        value={signupFirstname}
+                    />
+                    <input
+                        type="text"
+                        placeholder="Username"
+                        id="username"
+                        onChange={(e) => setSignUpUsername(e.target.value)}
+                        value={signUpUsername}
+                    />
+                    <input
+                        type="password"
+                        placeholder="Password"
+                        id="password"
+                        onChange={(e) => setSignupPassword(e.target.value)}
+                        value={signUpPassword}
+                    />
+                    <button id="signup" onClick={handleSignup}>Sign up</button>
+                </div>
+                <div className={styles.signInContainer}>
+                    <p className={styles.signinInvit}>Already have an account?</p>
 
-                <input
-                    type="text"
-                    placeholder="username"
-                    id="firstname"
-                    onChange={(e) => setSignInUsername(e.target.value)}
-                    value={signInUsername}
-                />
+                    <input
+                        type="text"
+                        placeholder="username"
+                        id="firstname"
+                        onChange={(e) => setSignInUsername(e.target.value)}
+                        value={signInUsername}
+                    />
 
-                <input
-                    type="text"
-                    placeholder="password"
-                    id="firstname"
-                    onChange={(e) => setSignInPassword(e.target.value)}
-                    value={signInPassword}
-                />
-
-                <button id="signin" onClick={handleSignin}>Sign in</button>
+                    <input
+                        type="text"
+                        placeholder="password"
+                        id="firstname"
+                        onChange={(e) => setSignInPassword(e.target.value)}
+                        value={signInPassword}
+                    />
+                    <button id="signin" onClick={handleSignin}>Sign in</button>
+                    </div>
             </div>
         </div>
     );

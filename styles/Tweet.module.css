@@ -9,11 +9,13 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  color: white;
 }
 
 .message {
   display: flex;
   align-items: flex-start;
+  color: white;
 }
 
 .like {
