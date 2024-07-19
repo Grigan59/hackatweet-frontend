@@ -6,7 +6,7 @@ import { faHeart, faTrash } from '@fortawesome/free-solid-svg-icons'
 import moment from 'moment'
 
 function Tweet(props) {
-    const urlBackEnd = 'http://localhost:3000';
+    const urlBackEnd = 'https://hackatweet-backend-deon5jdtr-grigans-projects.vercel.app';
     /* const [newLike,setNewLike] = useState(props.dataUser.nbLike); */
     const message = props.dataUser.message;
     const dataMessage = message.split(' ').map((word, i) => {

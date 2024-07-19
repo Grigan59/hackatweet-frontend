@@ -20,7 +20,7 @@ function Signup() {
     const [signUpPassword, setSignupPassword] = useState('');
 
     function handleSignup() {
-        fetch('http://localhost:3000/users/signup', {
+        fetch('https://hackatweet-backend-deon5jdtr-grigans-projects.vercel.app/users/signup', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ firstname:signupFirstname, username: signUpUsername, password: signUpPassword }),
