@@ -1,5 +1,5 @@
 import styles from '../styles/Home.module.css';
-import logo from 'twitterLogo.png'
+import image from react/image
 
 function Login() {
 
@@ -17,7 +17,7 @@ function Login() {
         <div className={styles.main} >
             <div className={styles.imgContainer}>
                 <img alt="background image" src='twitterBackground' className={styles.loginBackground}></img>
-                <img src={twitterLogo.png} alt="Main logo" className={styles.twitterIcon} />
+                <image src={twitterLogo.png} alt="Main logo" className={styles.twitterIcon} />
             </div>  
             <div className={styles.loginContainer}>
                 <img src='logo' className={styles.twitterIcon}></img>
@@ -28,6 +28,7 @@ function Login() {
                 <input type="password" placeholder="name" id="firstname" onChange={(e) => setSignupPassword(e.target.value)} value={SignupPassword} />
                 <button id="signup" onClick={() => handlesignup()}>Sign up</button>
                 <p className={styles.SigninInvit}>Already have an account ?</p>
+
                 <button id="signup" onClick={() => handleLogin()}>Sign up</button>
             </div>
         </div>
