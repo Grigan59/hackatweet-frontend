@@ -12,7 +12,7 @@ function Home() {
   const dispatch = useDispatch();
   const router = useRouter()
 
-  const urlBackEnd = 'https://hackatweet-backend-deon5jdtr-grigans-projects.vercel.app';
+  const urlBackEnd = 'https://hackatweet-backend-lake.vercel.app';
   const [newTweet, setNewTweet] = useState('');
   const [userInfos, setUserInfos] = useState({});
   const user = useSelector((state) => state.user.value);
