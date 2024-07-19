@@ -32,6 +32,7 @@ function Signup() {
                 setSignupFirstname(''),
                 setSignUpUsername('');
                 setSignupPassword('');
+                router.push('/tweets');
             }
         })  
     };
