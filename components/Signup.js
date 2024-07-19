@@ -3,6 +3,8 @@ import { useState} from 'react'
 import { useDispatch } from 'react-redux';
 import {logInUser} from '../reducers/user'
 import {useRouter} from 'next/router'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+/* import { showModal } from '@fortawesome/free-solid-svg-icons' */
 
 function Signup() {
 
@@ -33,6 +35,7 @@ function Signup() {
             }
         })  
     };
+
     function showModal(){
         setIsSignUpVisible(false)
     }
@@ -42,7 +45,7 @@ function Signup() {
     <div className={styles.main}>
 
         <img src='/twitterLogo.png' className={styles.twitterIcon}/>
-        <FontAwesomeIcon onClick={showModal} className={styles.userSection} icon={faXmark} />
+        {/* <FontAwesomeIcon onClick={showModal} className={styles.userSection} icon={faXmark} /> */}
         <p className={styles.SignUpTitle}>Create your hackatweet account</p>
         <p></p>
         <input

@@ -121,8 +121,8 @@ function Home() {
   }, [])
 
   function handlelougout(token) {
-    router.push('/')
-    dispatch(logOutUser(token))
+    router.push('/');
+    dispatch(logOutUser());
   }
 
   return (
@@ -160,7 +160,7 @@ function Home() {
           <p>{newTweet.length} /280</p>
           <button onClick={() => addTweet(user.token, newTweet)}>Tweet</button>
         </div>
-        <Lasttweets dataTweets={dataTweets} deleteTweet={deleteTweet} like={like} firstname={userInfos.firstname}/>
+        <Lasttweets dataTweets={dataTweets} deleteTweet={deleteTweet} like={like} firstname={userInfos.firstname} />
       </div>
       <div className={styles.rightfield}>
         <h2 className={styles.title}>Trends</h2>
