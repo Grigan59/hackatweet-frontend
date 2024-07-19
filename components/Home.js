@@ -49,7 +49,6 @@ function Home() {
   }
 
   const [dataTrends, setDataTrends] = useState([]);
-  console.log(dataTrends)
   const loadTrends = () => {
     fetch(`${urlBackEnd}/trends`)
       .then(response => response.json())
@@ -94,7 +93,7 @@ function Home() {
   }, [])
 
   function handlelougout(token){
-    router.push('/Login')
+    router.push('/')
     dispatch(logOutUser(token))
   }
 
