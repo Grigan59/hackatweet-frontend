@@ -7,7 +7,7 @@ function Lasttweets() {
   const [dataTweets,setDataTweets]=useState([]);
 
   useEffect(() => {
-    fetch(`${urlBackEnd}/tweets}`)
+    fetch(`${urlBackEnd}/tweets`)
       .then(response => response.json())
       .then(data => {
         if (data.result){
@@ -15,7 +15,7 @@ function Lasttweets() {
         }
       });
 
-  }, [dataTweets])
+  }, [])
 
   return (
     <div>

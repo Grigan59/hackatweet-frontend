@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
     value: {
-        token: '',
+        token: 'SInAU5ZhopzTZ-g96vFPSxU_lssAY6Ir',
     },
 };
 

@@ -9,16 +9,31 @@ import { useSelector } from 'react-redux'
 function Home() {
   const urlBackEnd = 'http://localhost:3000';
   const [newTweet, setNewTweet] = useState('');
-  const token = 'SInAU5ZhopzTZ-g96vFPSxU_lssAY6Ir';
-  const [user,setUser] = useState({});
+  const [userInfos, setUserInfos] = useState({});
+  const user = useSelector((state) => state.user.value);
 
-  const addTweet = (token, message, trends) => {
+  const addTweet = async (token, message) => {
+    const listeTrends = [];
+    message.split(' ').map(word => {
+      if (word[0] === '#') {
+        listeTrends.push(word.toLowerCase());
+      }
+    });
+
+    for (const element of listeTrends) {
+      const response = await fetch(`${urlBackEnd}/trends/%23${element.slice(1)}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+      })
+      const data = await response.json();
+    }
+
     fetch(`${urlBackEnd}/tweets/new/${token}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         message: message,
-        trends: trends,
+        trends: listeTrends,
       })
     }).then(response => response.json())
       .then(data => {
@@ -27,19 +42,19 @@ function Home() {
   }
 
   useEffect(() => {
-    fetch(`${urlBackEnd}/users/${token}`)
+    fetch(`${urlBackEnd}/users/${user.token}`)
       .then(response => response.json())
       .then(data => {
         if (data) {
-          setUser({
-            firstname:data.user.firstname,
-            nickname:data.user.nickname,
+          setUserInfos({
+            firstname: data.user.firstname,
+            nickname: data.user.nickname,
           });
         }
         else {
-          setUser({
-            firstname:'',
-            nickname:''
+          setUserInfos({
+            firstname: '',
+            nickname: ''
           });
         }
       });
@@ -64,8 +79,8 @@ function Home() {
               style={{ borderRadius: '50%' }}
             />
             <div className={styles.profilfield}>
-              <h3>{user.firstname}</h3>
-              <p>{user.nickname}</p>
+              <h3>{userInfos.firstname}</h3>
+              <p>{userInfos.nickname}</p>
             </div>
           </div>
           <button>Logout</button>
@@ -79,13 +94,13 @@ function Home() {
         </div>
         <div className={styles.validfield}>
           <p>{newTweet.length} /280</p>
-          <button onClick={() => addTweet(token, newTweet, '')}>Tweet</button>
+          <button onClick={() => addTweet(user.token, newTweet)}>Tweet</button>
         </div>
         <Lasttweets />
       </div>
       <div className={styles.rightfield}>
         <h2 className={styles.title}>Trends</h2>
-        <Trends />
+        <Trends newTweet={newTweet}/>
       </div>
     </div>
   );
