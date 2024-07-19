@@ -94,7 +94,7 @@ function Home() {
 
   function handlelougout(){
     dispatch(logOutUser())
-    router.push('/Login')
+    router.push('/')
   }
 
   return (

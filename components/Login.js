@@ -6,35 +6,21 @@ import { useState} from 'react'
 import { useDispatch } from 'react-redux';
 import {logInUser} from '../reducers/user'
 import {useRouter} from 'next/router'
+import Signup from './Signup';
 
 function Login() {
     const dispatch = useDispatch();
     const router = useRouter()
 
-    const [signupFirstname, setSignupFirstname] = useState('');
-    const [signUpUsername, setSignUpUsername] = useState('');
-    const [signUpPassword, setSignupPassword] = useState('');
-
     const [signInUsername, setSignInUsername] = useState('');
     const [signInPassword, setSignInPassword] = useState('');
 
-    function handleSignup() {
-        fetch('http://localhost:3000/users/signup', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ firstname:signupFirstname, username: signUpUsername, password: signUpPassword }),
-        })
-        .then(response => response.json())
-        .then(data=> {
-            if(data.result){
-                dispatch(logInUser(data.token));
-                setSignupFirstname(''),
-                setSignUpUsername('');
-                setSignupPassword('');
-            }
-        })  
-    };
+    const [IsSignUpVisible, setIsSignUpVisible] = useState(false);
 
+     function showSignup() {
+        setIsSignUpVisible(!IsSignUpVisible);
+      };
+    
     function handleSignin() {
         fetch('http://localhost:3000/users/signin', {
             method: 'POST',
@@ -57,35 +43,17 @@ function Login() {
     return (
         <div className={styles.main}>
             <div className={styles.imgContainer}>
-                <img src='/twitter-icon-white-transparent.png' className={styles.backgroundIcon} alt='Twitter Icon' />
+                <img src='/twitterLogo.png' className={styles.backgroundIcon} alt='Twitter Icon' />
             </div>
-            <div className={styles.loginContainer}>
-                <div className={styles.signUpContainer}>
-                    <h1 className={styles.title}>See what's happening</h1>
-                    <h2 className={styles.underTitle}>Join hacketweet today.</h2>
-                    <input
-                        type="text"
-                        placeholder="First Name"
-                        id="firstname"
-                        onChange={(e) => setSignupFirstname(e.target.value)}
-                        value={signupFirstname}
-                    />
-                    <input
-                        type="text"
-                        placeholder="Username"
-                        id="username"
-                        onChange={(e) => setSignUpUsername(e.target.value)}
-                        value={signUpUsername}
-                    />
-                    <input
-                        type="password"
-                        placeholder="Password"
-                        id="password"
-                        onChange={(e) => setSignupPassword(e.target.value)}
-                        value={signUpPassword}
-                    />
-                    <button id="signup" onClick={handleSignup}>Sign up</button>
-                </div>
+        <div className={styles.loginContainer}>
+
+            <div className={styles.signUpContainer}>
+                <h1 className={styles.title}>See what's happening</h1>
+                <h2 className={styles.underTitle}>Join hacketweet today.</h2>
+                <button id="signup" onClick={showSignup}>Sign up</button>
+                {IsSignUpVisible && <Signup/>}
+            </div>
+                
                 <div className={styles.signInContainer}>
                     <p className={styles.signinInvit}>Already have an account?</p>
 
