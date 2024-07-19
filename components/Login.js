@@ -46,10 +46,9 @@ function Login() {
         .then(data=> {
             console.log(data)
             if(data.result){
-                dispatch(logInUser(logInUser(data.token)));
+                dispatch(logInUser(data.token));
                 setSignInUsername('');
                 setSignInPassword('');
-                console.log(data)
                 router.push('/tweets')
             }
         })
