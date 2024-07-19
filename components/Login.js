@@ -1,39 +1,109 @@
-import styles from '../styles/Home.module.css';
-import image from react/image
+import styles from '../styles/Login.module.css';
+import Image from 'next/image';
+import background from '../public/background.png'; 
+import twitterIcon from '../public/twitter-icon-white-transparent.png';
+import { useState} from 'react'
+import { useDispatch } from 'react-redux';
+import {logInUser} from '../reducers/user'
+
 
 function Login() {
+    const dispatch = useDispatch();
 
 
-    function handlesignup() {
-        //show signup
+    const [signupFirstname, setSignupFirstname] = useState('');
+    const [signUpUsername, setSignUpUsername] = useState('');
+    const [signUpPassword, setSignupPassword] = useState('');
+
+    const [signInUsername, setSignInUsername] = useState('');
+    const [signInPassword, setSignInPassword] = useState('');
+
+    function handleSignup() {
+        fetch('http://localhost:3000/users/signup', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ firstname:signupFirstname, username: signUpUsername, password: signUpPassword }),
+        })
+        .then(response => response.json())
+        .then(data=> {
+            if(data.result){
+                dispatch(logInUser(data.token));
+                setSignupFirstname(''),
+                setSignUpUsername('');
+                setSignupPassword('');
+            }
+        })  
+    };
+
+    function handleSignin() {
+        fetch('http://localhost:3000/users/signin', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({  username: signInUsername, password: signInPassword }),
+        })
+        .then(response => response.json())
+        .then(data=> {
+            if(data.result){
+                dispatch(logInUser(logInUser(data.token)));
+                setSignInUsername('');
+                setSignInPassword('');
+                console.log('connected')
+            }
+        })
+
     }
 
-    function handlesignin() {
-        //show signin
-    }
-
-  return (
-    <div>
-        <div className={styles.main} >
+    return (
+        <div className={styles.main}>
             <div className={styles.imgContainer}>
-                <img alt="background image" src='twitterBackground' className={styles.loginBackground}></img>
-                <image src={twitterLogo.png} alt="Main logo" className={styles.twitterIcon} />
-            </div>  
+            </div>
             <div className={styles.loginContainer}>
-                <img src='logo' className={styles.twitterIcon}></img>
                 <h1 className={styles.title}>See what's happening</h1>
                 <h2 className={styles.underTitle}>Join hacketweet today.</h2>
-                <input type="text" placeholder="name" id="username" onChange={(e) => setSignUpSignupFirstname(e.target.value)} value={SignupFirstname} />
-                <input type="text" placeholder="name" id="firstname" onChange={(e) => setSignUpUsername(e.target.value)} value={SignUpUsername} />
-                <input type="password" placeholder="name" id="firstname" onChange={(e) => setSignupPassword(e.target.value)} value={SignupPassword} />
-                <button id="signup" onClick={() => handlesignup()}>Sign up</button>
-                <p className={styles.SigninInvit}>Already have an account ?</p>
+                <input
+                    type="text"
+                    placeholder="First Name"
+                    id="firstname"
+                    onChange={(e) => setSignupFirstname(e.target.value)}
+                    value={signupFirstname}
+                />
+                <input
+                    type="text"
+                    placeholder="Username"
+                    id="username"
+                    onChange={(e) => setSignUpUsername(e.target.value)}
+                    value={signUpUsername}
+                />
+                <input
+                    type="password"
+                    placeholder="Password"
+                    id="password"
+                    onChange={(e) => setSignupPassword(e.target.value)}
+                    value={signUpPassword}
+                />
+                <button id="signup" onClick={handleSignup}>Sign up</button>
+                <p className={styles.signinInvit}>Already have an account?</p>
 
-                <button id="signup" onClick={() => handleLogin()}>Sign up</button>
+                <input
+                    type="text"
+                    placeholder="username"
+                    id="firstname"
+                    onChange={(e) => setSignInUsername(e.target.value)}
+                    value={signInUsername}
+                />
+
+                <input
+                    type="text"
+                    placeholder="password"
+                    id="firstname"
+                    onChange={(e) => setSignInPassword(e.target.value)}
+                    value={signInPassword}
+                />
+
+                <button id="signin" onClick={handleSignin}>Sign in</button>
             </div>
         </div>
-    </div>
-  );
+    );
 }
 
 export default Login;

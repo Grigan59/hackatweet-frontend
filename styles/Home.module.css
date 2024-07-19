@@ -1,22 +1,87 @@
 .main {
+  background-color: rgb(7, 12, 51);
+  width: 100vw;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
   min-height: 100vh;
-  padding: 4rem 0;
 }
 
 .title {
-  line-height: 1.15;
-  font-size: 4rem;
+  /* border: 1px solid white; */
+  padding: 15px;
+  color: white;
 }
 
-.title a {
-  color: #0070f3;
-  text-decoration: none;
+.leftfield {
+  border: 1px solid grey;
+  width: 20%;
+  height:100vh;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 
-.title a:hover, .title a:focus, .title a:active {
-  text-decoration: underline;
+.menu {
+  /* border: 1px solid white; */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.profil {
+  /* border: 1px solid white; */
+  color: white;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.profilfield{
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.centerfield {
+  border: 1px solid grey;
+  width: 55%;
+  height:100vh;
+}
+
+.inputfield {
+  /* border: 1px solid white; */
+  padding-left: 50px;
+  min-height: 60px;
+}
+
+.inputfield > p {
+  color: grey;
+}
+
+.newtweet {
+  background-color: rgba(255, 255, 255, 0);
+  color: white;
+  width: 90%;
+  border: 0px;
+  overflow-wrap: break-word;
+}
+
+.validfield {
+  /* border: 1px solid white; */
+  color: white;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 50px;
+}
+
+.rightfield {
+  border: 1px solid grey;
+  width: 25%;
+  height:100vh;
 }
