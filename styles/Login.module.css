@@ -4,11 +4,12 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    z-index: 2;
   }
 
   .imgContainer {
     background-image: url('../public/background.png');
-    width: 50vw; 
+    width: 40vw; 
     height: 100vh; 
     overflow: hidden;
     border: 1px solid yellow;
@@ -25,10 +26,17 @@
   height: 200px;
 }
 
-
 .loginContainer{
   display: flex;
   flex-direction: column;
+  align-items:stretch;
+}
+
+.signUpContainer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 500px;
 }
 
   .twitterIcon{}
