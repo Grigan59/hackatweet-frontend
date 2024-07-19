@@ -4,6 +4,18 @@ import {faHeart} from '@fortawesome/free-solid-svg-icons'
 
 function Tweet(props) {
 
+    const message = props.message;
+    const dataMessage = message.split(' ').map(word=>{
+        if (word[0] === '#') {
+            return <span>word</span>;
+        }
+        else {
+            return word;
+        }
+    })
+
+    /* console.log(...dataMessage) */
+
     return (
         <div className={styles.main}>
             <div className={styles.profil}>

@@ -1,6 +1,26 @@
 .main {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    min-height: 100px;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 10px;
+}
+
+.profil {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.message {
+  display: flex;
+  align-items: flex-start;
+}
+
+.like {
+  color: white;
+  cursor: pointer;
+}
+
+.like:hover {
+  color: grey;
+}

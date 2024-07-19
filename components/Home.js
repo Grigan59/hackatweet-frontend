@@ -37,15 +37,15 @@ function Home() {
       })
     }).then(response => response.json())
       .then(data => {
-        console.log(data);
+        /* console.log(data); */
       });
   }
 
   useEffect(() => {
-    fetch(`${urlBackEnd}/users/${user.token}`)
+    fetch(`${urlBackEnd}/users/${user.token.payload}`)
       .then(response => response.json())
       .then(data => {
-        if (data) {
+        if (data.result) {
           setUserInfos({
             firstname: data.user.firstname,
             nickname: data.user.nickname,
@@ -94,13 +94,13 @@ function Home() {
         </div>
         <div className={styles.validfield}>
           <p>{newTweet.length} /280</p>
-          <button onClick={() => addTweet(user.token, newTweet)}>Tweet</button>
+          <button onClick={() => addTweet(user.token.payload, newTweet)}>Tweet</button>
         </div>
         <Lasttweets />
       </div>
       <div className={styles.rightfield}>
         <h2 className={styles.title}>Trends</h2>
-        <Trends newTweet={newTweet}/>
+        <Trends />
       </div>
     </div>
   );

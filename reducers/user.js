@@ -12,7 +12,6 @@ export const userSlice = createSlice({
     initialState,
     reducers: {
         logInUser: (state, action) => {
-            console.log(action.payload)
             state.value.token = action.payload;
         },
         logOutUser: (state) => {
