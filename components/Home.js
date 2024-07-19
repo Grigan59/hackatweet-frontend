@@ -4,9 +4,14 @@ import Login from './Login'
 import Lasttweets from './Lasttweets'
 import Trends from './Trends'
 import { useState, useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import {logOutUser} from '../reducers/user'
+import {useRouter} from 'next/router'
 
 function Home() {
+  const dispatch = useDispatch();
+  const router = useRouter()
+
   const urlBackEnd = 'http://localhost:3000';
   const [newTweet, setNewTweet] = useState('');
   const [userInfos, setUserInfos] = useState({});
@@ -42,7 +47,7 @@ function Home() {
   }
 
   useEffect(() => {
-    fetch(`${urlBackEnd}/users/${user.token.payload}`)
+    fetch(`${urlBackEnd}/users/${user.token}`)
       .then(response => response.json())
       .then(data => {
         if (data.result) {
@@ -60,6 +65,11 @@ function Home() {
       });
 
   }, [])
+
+  function handlelougout(token){
+    router.push('/Login')
+    dispatch(logOutUser(token))
+  }
 
   return (
     <div className={styles.main}>
@@ -83,7 +93,7 @@ function Home() {
               <p>{userInfos.nickname}</p>
             </div>
           </div>
-          <button>Logout</button>
+           <button onClick={() => handlelougout(user.token)} className={styles.profilfield} >Logout</button>       {/*bouton LOGOUT ! */}
         </div>
       </div>
       <div className={styles.centerfield}>
@@ -94,7 +104,7 @@ function Home() {
         </div>
         <div className={styles.validfield}>
           <p>{newTweet.length} /280</p>
-          <button onClick={() => addTweet(user.token.payload, newTweet)}>Tweet</button>
+          <button onClick={() => addTweet(user.token, newTweet)}>Tweet</button>
         </div>
         <Lasttweets />
       </div>

@@ -5,7 +5,6 @@ import twitterIcon from '../public/twitter-icon-white-transparent.png';
 import { useState} from 'react'
 import { useDispatch } from 'react-redux';
 import {logInUser} from '../reducers/user'
-import {Home} from './Home'
 import {useRouter} from 'next/router'
 
 function Login() {
@@ -46,7 +45,7 @@ function Login() {
         .then(data=> {
             console.log(data)
             if(data.result){
-                dispatch(logInUser(logInUser(data.token)));
+                dispatch(logInUser(data.token));
                 setSignInUsername('');
                 setSignInPassword('');
                 console.log(data)
