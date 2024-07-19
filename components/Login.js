@@ -5,7 +5,6 @@ import twitterIcon from '../public/twitter-icon-white-transparent.png';
 import { useState} from 'react'
 import { useDispatch } from 'react-redux';
 import {logInUser} from '../reducers/user'
-import {Home} from './Home'
 import {useRouter} from 'next/router'
 
 function Login() {
