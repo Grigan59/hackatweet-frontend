@@ -5,8 +5,8 @@ import Lasttweets from './Lasttweets'
 import Trends from './Trends'
 import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import {logOutUser} from '../reducers/user'
-import {useRouter} from 'next/router'
+import { logOutUser } from '../reducers/user'
+import { useRouter } from 'next/router'
 
 function Home() {
   const dispatch = useDispatch();
@@ -64,9 +64,37 @@ function Home() {
     fetch(`${urlBackEnd}/tweets`)
       .then(response => response.json())
       .then(data => {
-        if (data.result){
+        if (data.result) {
           setDataTweets(data.tweets);
         }
+      });
+  }
+
+  const deleteTweet = (id) => {
+    fetch(`${urlBackEnd}/tweets`, {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        id: id,
+      })
+    }).then(response => response.json())
+      .then(data => {
+        loadTweets();
+        loadTrends();
+      });
+  }
+
+  const like = (id) => {
+    fetch(`${urlBackEnd}/tweets/addlike`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        id: id
+      })
+    }).then(response => response.json())
+      .then(data => {
+        loadTweets();
+        loadTrends();
       });
   }
 
@@ -92,7 +120,7 @@ function Home() {
 
   }, [])
 
-  function handlelougout(token){
+  function handlelougout(token) {
     router.push('/')
     dispatch(logOutUser(token))
   }
@@ -119,7 +147,7 @@ function Home() {
               <p>{userInfos.nickname}</p>
             </div>
           </div>
-           <button onClick={() => handlelougout(user.token)} className={styles.profilfield} >Logout</button>       {/*bouton LOGOUT ! */}
+          <button onClick={() => handlelougout(user.token)} >Logout</button>       {/*bouton LOGOUT ! */}
         </div>
       </div>
       <div className={styles.centerfield}>
@@ -132,7 +160,7 @@ function Home() {
           <p>{newTweet.length} /280</p>
           <button onClick={() => addTweet(user.token, newTweet)}>Tweet</button>
         </div>
-        <Lasttweets dataTweets={dataTweets} />
+        <Lasttweets dataTweets={dataTweets} deleteTweet={deleteTweet} like={like} firstname={userInfos.firstname}/>
       </div>
       <div className={styles.rightfield}>
         <h2 className={styles.title}>Trends</h2>

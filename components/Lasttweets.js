@@ -3,12 +3,12 @@ import Tweet from './Tweet';
 import { useState, useEffect } from 'react'
 
 function Lasttweets(props) {
-  const tweets = props.dataTweets.map((e,i)=> {
-    return <Tweet key={i} firstname={e.user.firstname} nickname={e.user.nickname} message={e.message}/>
-  })
+  const tweets = props.dataTweets.map((e, i) => {
+    return <Tweet key={i} dataUser={e} deleteTweet={props.deleteTweet} like={props.like} firstname={props.firstname}/>
+  });
 
   return (
-    <div>
+    <div className={styles.container}>
       {tweets}
     </div>
   );

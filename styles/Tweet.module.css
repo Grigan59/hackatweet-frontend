@@ -1,4 +1,5 @@
-.main {
+.container {
+  border: 1px solid grey;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -10,13 +11,44 @@
   justify-content: flex-start;
   align-items: center;
   color: white;
+  margin-bottom: 15px;
+}
+
+.firstname {
+  margin-left: 10px;
+
+}
+
+.nickname {
+  color:grey;
+  margin-left: 5px;
+
 }
 
 .message {
+  height: 30px;
   display: flex;
   align-items: flex-start;
   color: white;
 }
+
+.message > p > span {
+  color: rgb(58, 120, 201);
+  font-weight: bold;
+}
+
+.edit {
+  height: 30px;
+  color: white;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.edit > p {
+  margin-left: 5px;
+}
+
 
 .like {
   color: white;
@@ -24,5 +56,15 @@
 }
 
 .like:hover {
+  color: grey;
+}
+
+.trash {
+  margin-left: 5px;
+  color: white;
+  cursor: pointer;
+}
+
+.trash:hover {
   color: grey;
 }
