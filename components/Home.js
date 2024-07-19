@@ -66,9 +66,9 @@ function Home() {
 
   }, [])
 
-  function handlelougout(token){
+  function handlelougout(){
+    dispatch(logOutUser())
     router.push('/Login')
-    dispatch(logOutUser(token))
   }
 
   return (

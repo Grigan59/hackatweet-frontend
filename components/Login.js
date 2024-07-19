@@ -45,6 +45,7 @@ function Login() {
         .then(data=> {
             console.log(data)
             if(data.result){
+                console.log(data.token.payload)
                 dispatch(logInUser(data.token));
                 setSignInUsername('');
                 setSignInPassword('');
