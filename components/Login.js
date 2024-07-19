@@ -5,11 +5,12 @@ import twitterIcon from '../public/twitter-icon-white-transparent.png';
 import { useState} from 'react'
 import { useDispatch } from 'react-redux';
 import {logInUser} from '../reducers/user'
-
+import {Home} from './Home'
+import {useRouter} from 'next/router'
 
 function Login() {
     const dispatch = useDispatch();
-
+    const router = useRouter()
 
     const [signupFirstname, setSignupFirstname] = useState('');
     const [signUpUsername, setSignUpUsername] = useState('');
@@ -43,19 +44,21 @@ function Login() {
         })
         .then(response => response.json())
         .then(data=> {
+            console.log(data)
             if(data.result){
                 dispatch(logInUser(logInUser(data.token)));
                 setSignInUsername('');
                 setSignInPassword('');
-                console.log('connected')
+                console.log(data)
+                router.push('/tweets')
             }
         })
-
     }
 
     return (
         <div className={styles.main}>
             <div className={styles.imgContainer}>
+                <img src='/twitter-icon-white-transparent.png' className={styles.backgroundIcon} alt='Twitter Icon' />
             </div>
             <div className={styles.loginContainer}>
                 <h1 className={styles.title}>See what's happening</h1>
