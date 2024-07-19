@@ -1,6 +1,5 @@
 import styles from '../styles/Lasttweets.module.css'
 import Tweet from './Tweet';
-import { useState, useEffect } from 'react'
 
 function Lasttweets(props) {
   const tweets = props.dataTweets.map((e, i) => {
